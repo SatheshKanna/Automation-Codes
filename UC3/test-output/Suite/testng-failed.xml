@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="JavascriptConverter.Backupfilecreator">
+        <methods>
+          <include name="CreateFileRenameExisting"/>
+        </methods>
+      </class> <!-- JavascriptConverter.Backupfilecreator -->
+      <class name="NewtworKTrafficReaderPackage.NetworkTrafficReaderClass">
+        <methods>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- NewtworKTrafficReaderPackage.NetworkTrafficReaderClass -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
