@@ -1,0 +1,2 @@
+cd C:\Users\sathesh.gunasekaran\workspace\TAC_Dependant\Script
+cscript.exe Sendemail.vbs sathesh.gunasekaran@accenture.com sathesh.gunasekaran@accenture.com C:\Users\sathesh.gunasekaran\workspace\TAC_Dependant\Output\Output.html "Automation Report"

@@ -1,0 +1,1 @@
+java -jar "C:\Users\sathesh.gunasekaran\workspace\TAC_Dependant\target\TAC-V1-jar-with-dependencies.jar" "C:\Users\sathesh.gunasekaran\workspace\TAC_NonDependant\Input\Input.csv" "C:\Users\sathesh.gunasekaran\workspace\TAC_NonDependant\Config\config.properties"

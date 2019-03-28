@@ -1,0 +1,8 @@
+2019-02-15 11:51:14 The Code is Started
+2019-02-15 11:51:14 Writing all the console logs in the Logs Text File
+2019-02-15 11:51:14 Reading the Input Text File
+2019-02-15 11:51:14 Listing all the Task
+2019-02-15 11:51:14 Parsing the Json file
+2019-02-15 11:51:14 Encoding the Json object parameters with Base64
+2019-02-15 11:51:14 The Base64 encoded parameter is: eyJhdXRoUGFzcyI6IkphbkAyMDE5SmFuIiwiZmFzdE1vZGUiOiJ0cnVlIiwiYXV0aFVzZXIiOiJzLmRhcmEiLCJhY3Rpb25OYW1lIjoibGlzdFRhc2tzIn0=
+2019-02-15 11:51:14 Getting the Response Data
