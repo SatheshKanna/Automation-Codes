@@ -48,8 +48,8 @@ public class ExecuteTest
     	
 		String use3inputFile = args[0];
     	String configFile = args[1];
-		//String use3inputFile = "C:\\Users\\sathesh.gunasekaran\\Desktop\\WAITA\\Megha\\18032019\\Input_Simulation.xlsx";
-    	//String configFile = "C:\\WebAnalytics\\tool\\UseCase3\\UC3Objects\\object.properties";
+//		String use3inputFile = "C:\\Users\\sathesh.gunasekaran\\Desktop\\WAITA\\Direct Call and Mozilla\\Filter_Direct.xlsx";
+//    	String configFile = "C:\\WebAnalytics\\tool\\UseCase3\\UC3Objects\\object.properties";
     	ConfigFilePath = configFile;
     		
 		ReadObject objects = new ReadObject();

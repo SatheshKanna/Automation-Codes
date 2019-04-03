@@ -16,6 +16,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -61,17 +64,28 @@ public class UIOperation {
 	                try 
 	                {
 	                    NetworkTrafficReaderClass.proxySetUp();
-	                    DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-	            		capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-	                    capabilities.setCapability(CapabilityType.PROXY, NetworkTrafficReaderClass.seleniumProxy);
-	                    if(value.equalsIgnoreCase("Incognito"))
+	                    ChromeOptions options = new ChromeOptions();
+                		options.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
+                		options.setCapability(CapabilityType.PROXY, NetworkTrafficReaderClass.seleniumProxy);
+                		if(value.equalsIgnoreCase("Incognito"))
 	                    {
-	                    	ChromeOptions options = new ChromeOptions();
 	                        options.addArguments("--incognito");
-	                        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 	                    }
-	                    System.setProperty("webdriver.chrome.driver", ChromeDriverPath);
-	                    driver = new ChromeDriver(capabilities);
+                		System.setProperty("webdriver.chrome.driver", ChromeDriverPath);
+                		driver = new ChromeDriver(options);
+                		
+					/*
+					 * DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+					 * capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
+					 * capabilities.setCapability(CapabilityType.PROXY,
+					 * NetworkTrafficReaderClass.seleniumProxy);
+					 * if(value.equalsIgnoreCase("Incognito")) { ChromeOptions options = new
+					 * ChromeOptions(); options.addArguments("--incognito");
+					 * capabilities.setCapability(ChromeOptions.CAPABILITY, options); }
+					 * System.setProperty("webdriver.chrome.driver", ChromeDriverPath); driver = new
+					 * ChromeDriver(capabilities);
+					 */
+	                    
 	                    builder = new Actions(driver);
 	                    jse = (JavascriptExecutor) driver;
 	                    wait= new WebDriverWait(driver, 30);
@@ -86,14 +100,31 @@ public class UIOperation {
 	                try 
 	                {
 	                    NetworkTrafficReaderClass.proxySetUp();
-	                    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-	                    capabilities.setJavascriptEnabled(true);
-	                    capabilities.setCapability(CapabilityType.PROXY, NetworkTrafficReaderClass.seleniumProxy);
-	            	    //capabilities.setCapability("marionette",true);
-	            	    capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-	            	    //capabilities.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
+	                    FirefoxOptions options = new FirefoxOptions();
+//	                    FirefoxProfile profile = new FirefoxProfile();
+//	                    profile.setPreference("javascript.enabled", true);
+//	                    options.setProfile(profile);
+	                    options.setLogLevel(FirefoxDriverLogLevel.TRACE);
+	                    options.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
+	                    options.setCapability(CapabilityType.PROXY, NetworkTrafficReaderClass.seleniumProxy);
+	                    options.setCapability("marionette",true);
+	                    options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+	                    options.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
 	            	    System.setProperty("webdriver.gecko.driver", FirefoxDriverPath);
-	            		driver = new FirefoxDriver(capabilities);
+                		driver = new FirefoxDriver(options);
+                		
+                		
+					/*
+					 * DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+					 * capabilities.setJavascriptEnabled(true);
+					 * capabilities.setCapability(CapabilityType.PROXY,
+					 * NetworkTrafficReaderClass.seleniumProxy);
+					 * capabilities.setCapability("marionette",true);
+					 * capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+					 * capabilities.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
+					 * System.setProperty("webdriver.gecko.driver", FirefoxDriverPath); 
+					 * driver = new FirefoxDriver(capabilities);
+					 */	
 	            		builder = new Actions(driver);
 	                    jse = (JavascriptExecutor) driver;
 	                    wait= new WebDriverWait(driver, 30);
@@ -120,7 +151,6 @@ public class UIOperation {
 	    			wait.until(ExpectedConditions.elementToBeClickable(this.getObject(objectvalue,objectType)));
 	                Select dropdown = new Select(driver.findElement(this.getObject(objectvalue, objectType)));
 	                dropdown.selectByValue(value);
-	                driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
 	                break;
 	            case "NAVIGATE":
 	            	NetworkTrafficReaderClass.proxy.disableHarCaptureTypes(CaptureType.REQUEST_HEADERS, CaptureType.RESPONSE_HEADERS);
@@ -133,7 +163,6 @@ public class UIOperation {
 						NetworkTrafficReaderClass.proxy.enableHarCaptureTypes(CaptureType.REQUEST_HEADERS, CaptureType.RESPONSE_HEADERS);
 		                NetworkTrafficReaderClass.proxy.newHar(URL);
 		                //driver.get(URL);
-		                driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
 		                driver.navigate().to(URL);
 			    	}
 			    	else
