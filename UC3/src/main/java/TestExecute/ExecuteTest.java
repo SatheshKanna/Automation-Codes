@@ -43,26 +43,22 @@ public class ExecuteTest
     
     public static void main(String [] args) throws Exception 
     {
-    	try
-    	{
-    	
+    	try 
+        {
 		String use3inputFile = args[0];
     	String configFile = args[1];
 //		String use3inputFile = "C:\\Users\\sathesh.gunasekaran\\Desktop\\WAITA\\Direct Call and Mozilla\\Filter_Direct.xlsx";
 //    	String configFile = "C:\\WebAnalytics\\tool\\UseCase3\\UC3Objects\\object.properties";
     	ConfigFilePath = configFile;
-    		
+    
 		ReadObject objects = new ReadObject();
     	Properties allObjects =  objects.getObjectRepository();
-    	
     	//String use3inputFile = allObjects.getProperty("use3inputFile");
-
     	String downloadsRenamePath = allObjects.getProperty("downloadsRenamePath");
         String SeleniumOutputFile = allObjects.getProperty("SeleniumOutputFile");
         String LogsPath = allObjects.getProperty("LogsPath");
         String ExceptionsPath = allObjects.getProperty("ExceptionsPath");
         FrameworkInputFile = allObjects.getProperty("FrameworkInputFile");
-        
         String LogsFile = LogsPath + "\\Logs.txt";
         String ExceptionsFile = ExceptionsPath + "\\Exceptions.txt";
         String ZiplogsFile = LogsPath + "\\Logs" + new SimpleDateFormat("dd-MM-yyyy_HHmmss").format(new Date()) + ".zip";
@@ -231,21 +227,25 @@ public class ExecuteTest
 		{
 			directory.mkdirs();
 		}
-        
         FileOutputStream fileOut = new FileOutputStream(SeleniumOutputFile);
         wb.write(fileOut);
         System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date())+ "The Selenium Output file is: " + SeleniumOutputFile);
         fileOut.close();
         wb.close();
-    }
-    	catch (Exception e)
-    	{
-    		WriteLogsAndExceptions.appendToFile(e);
-    	}
-    	finally
-    	{
-    		System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date())+ "The Selenium Process Completed");
-    		//NetworkTrafficReaderClass.proxy.stop();
-    	}
+        
+        }
+        catch(Exception e)
+        {
+        	WriteLogsAndExceptions.appendToFile(e);
+        	try
+        	{
+        		webdriver.quit();
+        	}
+        	catch(Exception ex){}
+        }
+        finally 
+        {
+        	System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date())+ "The Selenium Process ended");
+        }
     }
 }

@@ -1,0 +1,1 @@
+java -jar "C:\Users\sathesh.gunasekaran\workspace\ITP\target\ITP-0.0.1-SNAPSHOT-jar-with-dependencies.jar" "sathesh.gunasekaran" "Skg@022019" "evening" "C:\Users\sathesh.gunasekaran\workspace\ITP\Driver\chromedriver.exe"
