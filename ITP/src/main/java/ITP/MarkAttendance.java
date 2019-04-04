@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MarkAttendance 
 {
-	static String mailPath = "C:\\Users\\sathesh.gunasekaran\\workspace\\ITP\\Mail";
+	static String mailPath;
 	static WebDriver driver;
 	public static void main(String[] args) throws Exception 
 	{
@@ -19,6 +19,7 @@ public class MarkAttendance
 			String Password = args[1];
 			String morngOrEveng = args[2];
 			String driverPath = args[3];
+			mailPath = args[4];
 //			String Username = "anusha.rayankula";
 //			String Password = "Smiley@dec26";
 //			String morngOrEveng = "evening";
